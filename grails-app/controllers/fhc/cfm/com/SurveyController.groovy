@@ -70,23 +70,16 @@ class SurveyController {
 				if(cmd.hasErrors()){
 					return demographicInfo()
 				}
-			}.to "midSummaryAction"
+				def questions = flow.demographicCommand.createQuestionAndAnswers()
+				def command = surveyMidSummaryService.fireMidSummaryRule(questions)
+				//command.data[0] = ["1","2","3","4"]
+				flow.midSummaryCommand = command
+				println "midSummaryCommand--------------:"+ flow.midSummaryCommand
+			}.to "midSummary"
 		}
 		
 		midSummary{
-			on("midSummary").to "midSummaryAction"
-		}
-		
-		midSummaryAction{
-			action{
-				println "midSummary:"+ flow
-				def questions = flow.demographicCommand.createQuestionAndAnswers()
-				println "questions--------------:"+ questions
-				surveyMidSummaryService.fireMidSummaryRule(questions)
-				//[results:SurveyMidSummaryService.excuteRule(flow)]
-				return midSummary()
-			}
-			on("midSummary").to "midSummary"
+			on("next").to "midSummary"
 		}
 
 	}

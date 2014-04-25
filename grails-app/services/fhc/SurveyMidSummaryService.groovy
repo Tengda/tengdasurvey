@@ -37,7 +37,7 @@ class SurveyMidSummaryService {
 		println '1231231233333--------done----'
 	}
 	
-	def fireMidSummaryRule(Question[] questions){
+	def MidSummaryCommand fireMidSummaryRule(Question[] questions){
 		println 'fireMidSummaryRule-------------start----------------'+questions
 		
 		def kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
@@ -54,8 +54,9 @@ class SurveyMidSummaryService {
 		println 'insert midSummaryCommand : '
 		ksession.fireAllRules()
 		ksession.dispose()
-
-		println 'fireMidSummaryRule-------------end----------------'
+		
+		println 'fireMidSummaryRule-------------end----------------: '+midSummaryCommand.data
+		return midSummaryCommand
 	}
 	
 }
