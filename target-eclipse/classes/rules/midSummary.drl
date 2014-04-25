@@ -2,9 +2,15 @@ package fhc.cfm.com
 
 dialect  "mvel"
 
+rule "test"
+when
+then
+  System.out.println("mid rules init test------------------");
+end
+
 rule "mid"
 when
-	$summary : MidsummaryCommand()
+	$summary : MidSummaryCommand()
 then
   System.out.println("mid rules init");
 
@@ -21,7 +27,7 @@ rule "based on salary generate chart"
 when
 	$q_salary : Question(name=="salary")
 	$q_age : Question(name=="age")
-	$summary : Mid$summaryCommand()
+	$summary : MidSummaryCommand()
 then
 	 
   age = $q_age.answer.value	 

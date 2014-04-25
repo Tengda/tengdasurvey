@@ -51,12 +51,10 @@ class SurveyMidSummaryService {
 		}
 		def midSummaryCommand = new MidSummaryCommand()
 		ksession.insert(midSummaryCommand)
-		
+		println 'insert midSummaryCommand : '
 		ksession.fireAllRules()
 		ksession.dispose()
-		
-		
-		
+
 		println 'fireMidSummaryRule-------------end----------------'
 	}
 	

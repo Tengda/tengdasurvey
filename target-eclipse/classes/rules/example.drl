@@ -4,3 +4,12 @@ when
 then
   System.out.println("first rules");
 end
+
+
+rule "mid"
+when
+
+then
+  System.out.println("mid rules init");
+end
+
