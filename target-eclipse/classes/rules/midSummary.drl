@@ -4,7 +4,7 @@ dialect  "mvel"
 
 rule "mid"
 when
-	$summary : Mid$summaryCommand()
+	$summary : MidsummaryCommand()
 then
   System.out.println("mid rules init");
 
