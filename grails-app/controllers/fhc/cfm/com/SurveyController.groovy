@@ -5,7 +5,7 @@ import org.junit.After;
 import groovy.swing.impl.DefaultAction;
 
 class SurveyController {
-	def surveyMidSummaryService
+	def surveyService
 	//def flowManagerService
 	//FlowInfo flowInfo
 	def index() {
@@ -71,7 +71,7 @@ class SurveyController {
 					return demographicInfo()
 				}
 				def questions = flow.demographicCommand.createQuestionAndAnswers()
-				def command = surveyMidSummaryService.fireMidSummaryRule(questions)
+				def command = surveyService.fireMidSummaryRule(questions)
 				flow.midSummaryCommand = command
 			}.to "midSummary"
 		}
@@ -95,7 +95,12 @@ class SurveyController {
 						if(item.value == value)
 							item.isSelected = true
 					}
-				}		
+				}	
+				
+				def questions = flow.demographicCommand.createQuestionAndAnswers()
+				def command = surveyService.fireFinalSummaryCommand(questions)
+				flow.finalSummaryCommand = command
+					
 			}.to "finalSummary"
 		}
 		

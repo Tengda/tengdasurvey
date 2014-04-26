@@ -15,6 +15,14 @@ then
   System.out.println("mid rules init");
 end
 
+
+rule "final"
+when
+	$summary : FinalSummaryCommand()
+then
+  System.out.println("final rules init");
+end
+
 rule "question and answers print out"
 when
 	$q : Question()
