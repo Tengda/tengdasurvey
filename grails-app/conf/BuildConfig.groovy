@@ -102,6 +102,6 @@ grails.project.dependency.resolution = {
 		compile ':webflow:2.0.8.1'
 		
 		compile ":google-visualization:0.6.2"
-		//compile ':drools-gorm:0.5.6'
+
     }
 }

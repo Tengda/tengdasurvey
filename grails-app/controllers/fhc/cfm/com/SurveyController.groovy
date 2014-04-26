@@ -72,14 +72,31 @@ class SurveyController {
 				}
 				def questions = flow.demographicCommand.createQuestionAndAnswers()
 				def command = surveyMidSummaryService.fireMidSummaryRule(questions)
-				//command.data[0] = ["1","2","3","4"]
 				flow.midSummaryCommand = command
-				println "midSummaryCommand--------------:"+ flow.midSummaryCommand
 			}.to "midSummary"
 		}
 		
 		midSummary{
-			on("next").to "midSummary"
+			on("next"){
+				// init goal selection				
+				if(!flow.goalSelectionCommand){
+					flow.goalSelectionCommand = surveyMidSummaryService.initGoalSelectionCommand()
+				}
+				println "*************************midSummary**************************:"+flow.goalSelectionCommand
+			}.to "goalSelection"
+		}
+		
+		goalSelection{
+			on("next"){
+				// set up selected value 
+				flow.goalSelectionCommand = surveyMidSummaryService.initGoalSelectionCommand()
+				for( value in params.items){
+					for(item in flow.goalSelectionCommand.items){
+						if(item.value == value)
+							item.isSelected = true
+					}
+				}		
+			}.to "midSummary"
 		}
 
 	}

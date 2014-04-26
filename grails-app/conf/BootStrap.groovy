@@ -5,6 +5,7 @@ class BootStrap {
     def init = { servletContext ->
 		// Check whether the test data already exists.
 		if(!Branch.count){
+			
 			/*
 			def question_sex = new Question(name:"sex").save()
 			def question_marital_status = new Question(id:"marital_status").save()
