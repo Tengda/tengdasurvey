@@ -62,7 +62,7 @@ class SurveyService {
 		}
 		
 		def FinalSummaryCommand fireFinalSummaryCommand(Question[] questions){
-			println 'fireMidSummaryRule-------------start----------------'+questions
+			println 'fireFinalSummaryCommand-------------start----------------'+questions
 			
 			def kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 			kbuilder.add(ResourceFactory.newClassPathResource("rules/summary.drl"),ResourceType.DRL)
@@ -79,7 +79,7 @@ class SurveyService {
 			ksession.fireAllRules()
 			ksession.dispose()
 			
-			println 'fireMidSummaryRule-------------end----------------: '
+			println 'fireFinalSummaryCommand-------------end----------------: '
 			return finalSummaryCommand
 		}
 		

@@ -80,7 +80,7 @@ class SurveyController {
 			on("next"){
 				// init goal selection				
 				if(!flow.goalSelectionCommand){
-					flow.goalSelectionCommand = surveyMidSummaryService.initGoalSelectionCommand()
+					flow.goalSelectionCommand = surveyService.initGoalSelectionCommand()
 				}
 				println "*************************midSummary**************************:"+flow.goalSelectionCommand
 			}.to "goalSelection"
@@ -89,7 +89,7 @@ class SurveyController {
 		goalSelection{
 			on("next"){
 				// set up selected value every time
-				flow.goalSelectionCommand = surveyMidSummaryService.initGoalSelectionCommand()
+				flow.goalSelectionCommand = surveyService.initGoalSelectionCommand()
 				for( value in params.items){
 					for(item in flow.goalSelectionCommand.items){
 						if(item.value == value)
