@@ -88,7 +88,7 @@ class SurveyController {
 		
 		goalSelection{
 			on("next"){
-				// set up selected value 
+				// set up selected value every time
 				flow.goalSelectionCommand = surveyMidSummaryService.initGoalSelectionCommand()
 				for( value in params.items){
 					for(item in flow.goalSelectionCommand.items){
@@ -96,7 +96,11 @@ class SurveyController {
 							item.isSelected = true
 					}
 				}		
-			}.to "midSummary"
+			}.to "finalSummary"
+		}
+		
+		finalSummary{
+			
 		}
 
 	}
