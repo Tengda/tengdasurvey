@@ -133,4 +133,7 @@ log4j = {
            'net.sf.ehcache.hibernate'
 }
 
+// mail
+grails {
 
+}
