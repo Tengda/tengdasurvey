@@ -129,3 +129,19 @@ log4j = {
 }
 
 
+
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.cfm.auth.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.cfm.auth.UserRole'
+grails.plugin.springsecurity.authority.className = 'com.cfm.auth.Role'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/':                              ['permitAll'],
+	'/index':                         ['permitAll'],
+	'/index.gsp':                     ['permitAll'],
+	'/**/js/**':                      ['permitAll'],
+	'/**/css/**':                     ['permitAll'],
+	'/**/images/**':                  ['permitAll'],
+	'/**/favicon.ico':                ['permitAll']
+]
+
