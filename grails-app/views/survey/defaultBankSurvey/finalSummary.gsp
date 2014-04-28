@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main"/>		
+		<meta name="layout" content="main"/>	
+		<gvisualization:apiImport/>		
 	</head>
 	<body>
-		<div id="page-body" role="main">	
-			final summary
-			<g:link event="next" class="buttons"><g:message code="default.fhc.button.next"/></g:link>
+		<div id="page-body" role="main">
+			<tmpl:/shared/startSurvey/finalSummaryTemplate/>		
 		</div>
 	</body>
 </html>

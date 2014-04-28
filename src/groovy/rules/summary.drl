@@ -15,14 +15,6 @@ then
   System.out.println("mid rules init");
 end
 
-
-rule "final"
-when
-	$summary : FinalSummaryCommand()
-then
-  System.out.println("final rules init");
-end
-
 rule "question and answers print out"
 when
 	$q : Question()
@@ -30,7 +22,7 @@ then
   System.out.println("question Name : "+$q.name+":"+ $q.answer.value);
 end 
 
-rule "based on salary generate chart"
+rule "mid rule based on salary generate chart"
 when
 	$q_salary : Question(name=="salary")
 	$q_age : Question(name=="age")
@@ -61,4 +53,33 @@ then
 	 $summary.tableData.add(['Average saving of your age group: ','$'+salary,'$30,720','$150,816']);
 	 $summary.tableData.add(['Average debt of your age group: ','$'+salary,'$2,611','$0']);
 	 $summary.tableData.add(['Average lifetime earn: ','$'+salary*10,'$5,526,200','$32,610,010']); 
+end
+
+rule "final"
+when
+	$summary : FinalSummaryCommand()
+then
+  System.out.println("final rules init");
+end
+
+rule "final rule based on salary generate chart"
+when
+	$q_salary : Question(name=="salary")
+	$q_age : Question(name=="age")
+	$summary : FinalSummaryCommand()
+then
+
+  // build chart data		
+  int age = $q_age.answer.value;
+  salary  = $q_salary.answer.value;	
+	
+	System.out.println("question Name age : -----------"+age);
+	System.out.println("question Name salary : -----------"+salary);	
+	
+	// build table data
+	 $summary.tableData.add(['YOUR GOALS','YOUR FITNESS SUMMARY']);
+	 
+	 $summary.tableData.add(['Reduce Credit Card Debt','-$12,555']);
+	 $summary.tableData.add(['Monthly Credit Card Payment','$626.15']);
+	 $summary.tableData.add(['Pat off Your Car','$462/mo.']);
 end

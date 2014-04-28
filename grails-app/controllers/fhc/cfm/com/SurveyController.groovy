@@ -173,14 +173,17 @@ class SurveyController {
 		}
 		*/
 		finalSummary{
-			on("next"){
-			/*
+			on("next"){FinalSummaryCommand cmd ->
+				println "FinalSummaryCommand--------email-------------------"+cmd.email
+				println "FinalSummaryCommand--------telepressence-------------------"+cmd.telepressence
+				if(cmd.hasErrors()){
+					return finalSummary()
+				}
 				sendMail {     
-				  to "twang54@asu.edu"     
+				  to "twang@cfms4.com"     
 				  subject "Hello Fred"     
 				  body 'How are you?' 
 				}
-			*/	
 			}.to "endSurvey"
 		}
 		
