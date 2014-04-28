@@ -5,7 +5,8 @@
 	</head>
 	<body>
 		<div id="page-body" role="main">	
-			final summary
+			buy house
+			<g:link event="next" class="buttons"><g:message code="default.fhc.button.next"/></g:link>
 		</div>
 	</body>
 </html>

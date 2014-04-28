@@ -85,38 +85,38 @@ class SurveyService {
 		
 		
 		def GoalSelectionCommand initGoalSelectionCommand(){
-			def item = new Item(name:"reduce credit card debt",value:"reduce_credit",isSelected:false)
+			def item = new Item(name:"reduce credit card debt",value:"goal_reduce_credit",isSelected:false)
 			def goalSelectionCommand = new GoalSelectionCommand()
 			goalSelectionCommand.items.add(item)
 			
-			item = new Item(name:"save for collage",value:"save_collage",isSelected:false)
+			item = new Item(name:"save for collage",value:"goal_save_collage",isSelected:false)
 			goalSelectionCommand.items.add(item)
 	
-			item = new Item(name:"Buy a house",value:"buy_house",isSelected:false)
+			item = new Item(name:"Buy a house",value:"goal_buy_house",isSelected:false)
 			goalSelectionCommand.items.add(item)
 			
-			item = new Item(name:"pay off student loans",value:"student_loans",isSelected:false)
+			item = new Item(name:"pay off student loans",value:"goal_student_loans",isSelected:false)
 			goalSelectionCommand.items.add(item)
 			
-			item = new Item(name:"save for a boat",value:"save_boat",isSelected:false)
+			item = new Item(name:"save for a boat",value:"goal_save_boat",isSelected:false)
 			goalSelectionCommand.items.add(item)
 			
-			item = new Item(name:"buy a car",value:"buy_car",isSelected:false)
+			item = new Item(name:"buy a car",value:"goal_buy_car",isSelected:false)
 			goalSelectionCommand.items.add(item)
 			
-			item = new Item(name:"establish family trust",value:"family_trust",isSelected:false)
+			item = new Item(name:"establish family trust",value:"goal_family_trust",isSelected:false)
 			goalSelectionCommand.items.add(item)
 			
-			item = new Item(name:"retire",value:"retire",isSelected:false)
+			item = new Item(name:"retire",value:"goal_retire",isSelected:false)
 			goalSelectionCommand.items.add(item)
 	
-			item = new Item(name:"remodel house",value:"remodel_house",isSelected:false)
+			item = new Item(name:"remodel house",value:"goal_remodel_house",isSelected:false)
 			goalSelectionCommand.items.add(item)
 			
-			item = new Item(name:"pay off my car",value:"pay_off_car",isSelected:false)
+			item = new Item(name:"pay off my car",value:"goal_pay_off_car",isSelected:false)
 			goalSelectionCommand.items.add(item)
 			
-			item = new Item(name:"increase income",value:"increase_income",isSelected:false)
+			item = new Item(name:"increase income",value:"goal_increase_income",isSelected:false)
 			goalSelectionCommand.items.add(item)
 	
 			return goalSelectionCommand
