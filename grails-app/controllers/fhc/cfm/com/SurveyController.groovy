@@ -179,7 +179,8 @@ class SurveyController {
 				if(cmd.hasErrors()){
 					return finalSummary()
 				}
-				sendMail {     
+				sendMail {   
+				  from "service@softwarehousecall.com"  
 				  to "twang@cfms4.com"     
 				  subject "Hello Fred"     
 				  body 'How are you?' 
