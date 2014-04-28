@@ -1,0 +1,8 @@
+
+rule "Cheese fans_1"
+when
+	$summary : MidSummaryCommand()
+then
+  System.out.println("first rules");
+end
+
