@@ -46,6 +46,7 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.jboss.com/maven2/"
 		//mavenRepo "http://repository.jboss.org/nexus/content/groups/public/"
 		//mavenRepo "http://people.apache.org/repo/m2-snapshot-repository/"
+		mavenRepo 'http://repo.spring.io/milestone'
     }
 
     dependencies {
@@ -104,5 +105,9 @@ grails.project.dependency.resolution = {
 		compile ":google-visualization:0.6.2"
 		
 		compile ":mail:1.0.4"
+		
+		compile ":grails-melody:1.50.0"
+		
+		compile ':spring-security-core:2.0-RC2'
     }
 }
