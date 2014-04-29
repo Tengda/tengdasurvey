@@ -4,13 +4,8 @@ class BootStrap {
 
     def init = { servletContext ->
 		// Check whether the test data already exists.
-		if(!Branch.count){
-			def role = new Role(authority: 'ROLE_ADMIN', description: 'Admin role').save()
-			def admin = new User(username: 'admin', userRealName: 'admin', password: 'admin',enabled: true, email: 'admin@servername').save()
-			def userRole = new UserRole()
-			userRole.user = admin
-			userRole.role = role
-			userRole.save()
+		if(!Branch.count){		
+
 			/*
 			def question_sex = new Question(name:"sex").save()
 			def question_marital_status = new Question(id:"marital_status").save()
@@ -29,9 +24,27 @@ class BootStrap {
 			
 			//survey.questions = questions
 			survey.save()
-			
 			branch.survey = survey
 			branch.save()
+			
+			def role = new Role(authority: 'ROLE_ADMIN', description: 'Admin role').save()
+			def admin = new User(username: 'admin', userRealName: 'admin', password: 'admin',enabled: true, email: 'admin@servername').save()
+			def userRole = new UserRole()
+			userRole.user = admin
+			userRole.role = role
+			userRole.save()
+			
+			def branchRole = new Role(authority: 'ROLE_BRANCH', description: 'Branch role').save()
+			def branchUser = new User(username: 'branch', userRealName: 'branch', password: 'branch',enabled: true, email: 'admin@servername').save()
+			def branchUserRole = new UserRole()
+			branchUserRole.user = branchUser
+			branchUserRole.role = branchRole
+			branchUserRole.save()
+			
+			def userBranch = new UserBranch()
+			userBranch.user = branchUser
+			userBranch.branch = branch
+			userBranch.save()
 			
 			branch = new Branch(branchId: 2, name: "Tengda's Branch 1", logo: "springsource.png",url: "http://www.dbsi-inc.com")
 			survey = new Survey(surveyId: 2, name: "tengdaBankSurvey")

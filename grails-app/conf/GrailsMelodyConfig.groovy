@@ -21,8 +21,8 @@ The parameter system-actions-enabled (true by default) enables some system actio
 /*
 Turn on Grails Service monitoring by adding 'spring' in displayed-counters parameter.
  */
-javamelody.'displayed-counters' = 'http,sql,error,log,spring,jsp'
-//javamelody.'displayed-counters' = 'http'
+//javamelody.'displayed-counters' = 'http,sql,error,log,spring,jsp'
+javamelody.'displayed-counters' = 'http,spring'
 
 
 
@@ -33,15 +33,11 @@ The parameter url-exclude-pattern is a regular expression to exclude some urls f
 //javamelody.'url-exclude-pattern' = '/static/.*'
 //javamelody.'url-exclude-pattern' = '/[^s]'
 
-/*
-Specify jndi name of datasource to monitor in production environment
- */
 /*environments {
     production {
         javamelody.datasources = 'java:comp/env/myapp/mydatasource'
     }
 }*/
 
-
 javamelody.'monitoring-path' = '/monitoring'
-javamelody.'no-database' = true
+//javamelody.'no-database' = false

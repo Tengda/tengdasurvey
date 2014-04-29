@@ -1,0 +1,3 @@
+04-29 08:31:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "[*]""select * from information_schema.sessions"; SQL statement:
+"select * from information_schema.sessions [42000-173]

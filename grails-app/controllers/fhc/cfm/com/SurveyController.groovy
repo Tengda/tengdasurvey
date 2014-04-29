@@ -7,6 +7,9 @@ import com.sun.java.util.jar.pack.Instruction.Switch;
 import groovy.swing.impl.DefaultAction;
 
 class SurveyController {
+	
+	static allowedMethods = [index: ['GET','POST']]
+	
 	def surveyService
 	//def flowManagerService
 	//FlowInfo flowInfo
@@ -17,10 +20,6 @@ class SurveyController {
 			params.branchId = 1
 		def branch = Branch.get(params.branchId)
 		render(view: "index", model: [branch: branch])
-		/*
-		//redirect(action: "survey")
-		println "****************************index?***********************"
-		redirect(action:'init')*/
 	}
 	
 	def init={

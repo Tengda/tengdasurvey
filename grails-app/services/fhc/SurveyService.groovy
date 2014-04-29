@@ -13,6 +13,8 @@ import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.rule.FactHandle;
 
 import fhc.cfm.com.*;
+import net.bull.javamelody.*;
+import com.cfm.auth.*;
 
 import grails.transaction.Transactional
 
@@ -120,5 +122,25 @@ class SurveyService {
 			goalSelectionCommand.items.add(item)
 	
 			return goalSelectionCommand
+		}
+		
+		def BranchStatisticsCommand getBranchCounterRequest(UserBranch userBranch){
+			def branchStatisticsCommand = new BranchStatisticsCommand()
+			
+			def context = new FilterContext()
+			context.initCounters()
+			def collector = context.getCollector()
+			
+			def httpCounter = collector.getCounterByName(Counter.HTTP_COUNTER_NAME)
+			def counterRequests = httpCounter.getOrderedRequests()
+			
+			def surveyName = userBranch.branch.survey.name
+			for (counterRequest in counterRequests){
+				if(counterRequest.getName().contains(surveyName)){
+					branchStatisticsCommand.counterRequests.add(counterRequest)
+				}
+			}
+			println "http counterRequest------getBranchCounterRequest---------------------:"+branchStatisticsCommand.counterRequests.size()
+			return branchStatisticsCommand
 		}
 }
