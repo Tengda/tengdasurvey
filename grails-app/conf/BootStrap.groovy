@@ -1,11 +1,16 @@
 import fhc.cfm.com.*
-
+import com.cfm.auth.*
 class BootStrap {
 
     def init = { servletContext ->
 		// Check whether the test data already exists.
 		if(!Branch.count){
-			
+			def role = new Role(authority: 'ROLE_ADMIN', description: 'Admin role').save()
+			def admin = new User(username: 'admin', userRealName: 'admin', password: 'admin',enabled: true, email: 'admin@servername').save()
+			def userRole = new UserRole()
+			userRole.user = admin
+			userRole.role = role
+			userRole.save()
 			/*
 			def question_sex = new Question(name:"sex").save()
 			def question_marital_status = new Question(id:"marital_status").save()

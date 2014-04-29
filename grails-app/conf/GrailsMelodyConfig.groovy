@@ -43,5 +43,5 @@ Specify jndi name of datasource to monitor in production environment
 }*/
 
 
-javamelody.'monitoring-path' = '/xxx'
+javamelody.'monitoring-path' = '/monitoring'
 javamelody.'no-database' = true
