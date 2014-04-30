@@ -93,7 +93,8 @@ class SurveyController {
 				flow.goalSelectionCommand = surveyService.initGoalSelectionCommand()
 				flow.goalSelectionSteps = []
 				def myItems = []
-				myItems.addAll(params.items)
+				if(params.items)
+					myItems.addAll(params.items)
 				for(value in myItems){
 					println "*************************single item************************:"+value
 					for(item in flow.goalSelectionCommand.items){
