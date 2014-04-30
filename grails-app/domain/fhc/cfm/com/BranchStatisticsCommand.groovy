@@ -5,7 +5,7 @@ import net.bull.javamelody.*;
 
 class BranchStatisticsCommand {
 	List<CounterRequest> counterRequests = []
-
+	List<CounterRequest> serviceCounterRequests = []
     static constraints = {
     }
 }

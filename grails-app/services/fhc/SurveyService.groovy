@@ -134,10 +134,23 @@ class SurveyService {
 			def httpCounter = collector.getCounterByName(Counter.HTTP_COUNTER_NAME)
 			def counterRequests = httpCounter.getOrderedRequests()
 			
+			//def springCounter = collector.getCounterByName("spring")
+			//def springCounterRequests = springCounter.getOrderedRequests()
+			//branchStatisticsCommand.counterRequests.addAll(springCounterRequests)
+			
+			
 			def surveyName = userBranch.branch.survey.name
 			for (counterRequest in counterRequests){
 				if(counterRequest.getName().contains(surveyName)){
 					branchStatisticsCommand.counterRequests.add(counterRequest)
+					/*
+					for(entry in counterRequest.getChildRequestsExecutionsByRequestId().entrySet()){
+						def requestId = entry.getKey();
+						println 'child request id: ------: '+requestId
+					}
+					*/
+					//println 'child request : ------------------------: '+counterRequest.getChildRequestsExecutionsByRequestId()
+					//println 'child request : ------------------------: '+counterRequest.childHits
 				}
 			}
 			println "http counterRequest------getBranchCounterRequest---------------------:"+branchStatisticsCommand.counterRequests.size()

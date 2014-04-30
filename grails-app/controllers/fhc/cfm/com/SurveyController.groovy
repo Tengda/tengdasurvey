@@ -92,13 +92,17 @@ class SurveyController {
 				// set up selected value every time
 				flow.goalSelectionCommand = surveyService.initGoalSelectionCommand()
 				flow.goalSelectionSteps = []
-				for( value in params.items){
+				def myItems = []
+				myItems.addAll(params.items)
+				for(value in myItems){
+					println "*************************single item************************:"+value
 					for(item in flow.goalSelectionCommand.items){
 						if(item.value == value)
 							item.isSelected = true
 							flow.goalSelectionSteps.add(value)
 					}
-				}	
+				}
+				flow.goalSelectionSteps.add("financialProductsInfo")  //this is for the last page
 				flow.goalSelectionSteps.unique()
 			}.to "goalSelectionStepAction" //"finalSummary" //flow.finalSummaryCommand.items[0].value //"finalSummary"
 		}
@@ -109,9 +113,14 @@ class SurveyController {
 				println "goalSelectionStepAction---------------------------"+flow.goalSelectionSteps
 				if(flow.goalSelectionSteps.size() >0){
 					def nextStep = flow.goalSelectionSteps[0]
-					
 					flow.goalSelectionSteps.remove(0)
 					switch (nextStep){
+						case "financialProductsInfo":
+							println "goalSelectionAction---last page-----financialProductsInfo-------------------"
+							def questions = flow.demographicCommand.createQuestionAndAnswers()
+							def command = surveyService.fireFinalSummaryCommand(questions)
+							flow.finalSummaryCommand = command
+							return financialProductsInfo()
 						case "goal_reduce_credit":
 							return goal_reduce_credit()
 						case "goal_save_collage" :
@@ -138,14 +147,7 @@ class SurveyController {
 						*/
 					}
 					
-				}else{
-					println "goalSelectionAction--------financialProductsInfo-------------------"
-					def questions = flow.demographicCommand.createQuestionAndAnswers()
-					def command = surveyService.fireFinalSummaryCommand(questions)
-					flow.finalSummaryCommand = command
-					return financialProductsInfo()
 				}
-				
 			}
 			on("financialProductsInfo").to "finalSummary"	
 			
