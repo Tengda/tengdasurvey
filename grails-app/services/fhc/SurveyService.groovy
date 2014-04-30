@@ -26,8 +26,6 @@ class SurveyService {
     }
 	
 	def testRules(){
-		
-			println '1231231233333------------'
 			def kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 			kbuilder.add(ResourceFactory.newClassPathResource("rules/example.drl"),ResourceType.DRL)
 	 
@@ -38,7 +36,6 @@ class SurveyService {
 			
 			ksession.fireAllRules()
 			ksession.dispose()
-			println '1231231233333--------done----'
 		}
 		
 		def MidSummaryCommand fireMidSummaryRule(Question[] questions){

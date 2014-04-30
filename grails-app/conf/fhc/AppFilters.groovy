@@ -41,7 +41,7 @@ class AppFilters {
                     model.put("siteVisitedCount", siteStatistic.odometer);
                 }
                 
-               */ pageStatistic.save();
+                pageStatistic.save();*/
                 //siteStatistic.save(flush: true);
             }
 			/**/
