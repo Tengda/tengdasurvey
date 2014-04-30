@@ -6,7 +6,6 @@ class DemographicCommand implements Serializable{
 	String marital_status;
 	String age;
 	String kids;
-	String salary;
 	static constraints = {
 		 //sex(blank: false)
 		// marital_status(blank: false)
@@ -35,11 +34,6 @@ class DemographicCommand implements Serializable{
 			question.setName("kids")
 			questions.add(createAnswer(question,kids))
 		}
-		if(salary){
-			def question = new Question()
-			question.setName("salary")
-			questions.add(createAnswer(question,salary))
-		}
 		return questions
 	}
 	
@@ -51,6 +45,5 @@ class DemographicCommand implements Serializable{
 		println "get question name: "+question.name
 		println "and id: "+question.id
 		return question 
-
 	}
 }

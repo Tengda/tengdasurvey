@@ -38,7 +38,7 @@ class SurveyService {
 			ksession.dispose()
 		}
 		
-		def MidSummaryCommand fireMidSummaryRule(Question[] questions){
+		def MidSummaryCommand fireMidSummaryRule(List<Question> questions){
 			println 'fireMidSummaryRule-------------start----------------'+questions
 			
 			def kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();

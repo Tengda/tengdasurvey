@@ -9,11 +9,6 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title><g:layoutTitle  default="${message(code: 'default.fhc.title')}"/></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">		
-		<link rel="shortcut icon" href="${resource(dir: 'images', file: branch?.logo)}" type="image/x-icon">
-		
-		<!--<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
-		-->
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 		
@@ -26,7 +21,7 @@
 		<r:layoutResources />		
 	</head>
 	<body>
-		<div id="fhcLogo" role="banner"><a href="${branch?.url}"><img src="${resource(dir: 'images', file: branch?.logo)}" alt="${branch?.name}"/></a>${branch?.name}</div>
+		<div id="fhcLogo" role="banner">Financila healthcheck</div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>

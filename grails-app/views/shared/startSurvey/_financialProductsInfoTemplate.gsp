@@ -5,75 +5,103 @@
 <g:renderErrors bean="${financialProductsInfoCommand}" />
            			
 <div class="buttons">
+
+	Now let's learn a little about your </br>
+	current financial products. </br>
+	Please select all that apply. If you don't know exact amounts </br>
+	on any of the items below, just do your best to estimate. </br>
+
 	<g:form action="${branch?.survey?.name?:name}">
 		<div>
-			Sex
-			<g:radioGroup name="sex" labels="['Male','Female']" values="['male','female']" value="${financialProductsInfoCommand?.sex?:sex}" >
-				<g:message code="${it.label}" />${it.radio}
-			</g:radioGroup>	
-			Marital Status
-			<g:radioGroup name="marital_status" labels="['Marry','Single']"  values="[marry,single]" value="${financialProductsInfoCommand?.marital_status?:marital_status}" >
-				<g:message code="${it.label}" />${it.radio}
-			</g:radioGroup>							
+			Salary Range: 
+			<div id=salarySlider></div>
+			<g:textField id="salary" name="salary" value="${financialProductsInfoCommand==null?0:financialProductsInfoCommand.salary?:salary}"/>				
 		</div>
-		<div>
-			Age: 
-			<div id=ageSlider></div>
-			<g:textField id="age" name="age" value="${financialProductsInfoCommand==null?0:financialProductsInfoCommand.age?:age}"/>	
-		</div>
-
-		<div>
-			Kids: 
-			<div id=kidsSlider></div>
-			<g:textField id="kids" name="kids" value="${financialProductsInfoCommand==null?0:financialProductsInfoCommand.kids?:kids}"/>				
+		
+		<div class="buttons">
+			Banking Products</br>
+			<g:link url="#" class="buttons" elementId="btn_savingAccounts">Savings Accounts</g:link>
+			<g:link url="#" class="buttons" elementId="btn_checkingAccounts">Checking Accounts</g:link>
+			<g:link url="#" class="buttons" elementId="btn_creditCards">Credit Cards</g:link>
+			
+			<g:textField style="display:none;" class="checkingAccountsCount" name="checkingAccountsCount" value="${financialProductsInfoCommand==null?0:financialProductsInfoCommand.checkingAccountsCount?:checkingAccountsCount}"/>
+			<g:textField style="display:none;" class="checkingAccountsAmount" name="checkingAccountsAmount" value="${financialProductsInfoCommand==null?0:financialProductsInfoCommand.checkingAccountsAmount?:checkingAccountsAmount}"/>
 		</div>
 
-		<div>
-			Debt: 
-			<div id=debtSlider></div>
-			<g:textField id="debt" name="debt" value="${financialProductsInfoCommand==null?0:financialProductsInfoCommand.debt?:debt}"/>				
-		</div>
-
-   		<g:submitButton name="next" value="Next"></g:submitButton>
-		<g:submitButton name="next" value="Back"></g:submitButton>
+   		<g:submitButton name="next" value="Next"></g:submitButton>		
 	</g:form>
+	
+		<div id="savingAccountsDialog">
+			Saving Accounts</br>
+			How many accounts you have? </br>
+			<div id=checkingAccountsCountSlider></div>
+			<g:textField class="checkingAccountsCount" name="checkingAccountsCount" value="${financialProductsInfoCommand==null?0:financialProductsInfoCommand.checkingAccountsCount?:checkingAccountsCount}"/>			
+			</br>
+			<div id=checkingAccountsAmountSlider></div>
+			<g:textField class="checkingAccountsAmount" name="checkingAccountsAmount" value="${financialProductsInfoCommand==null?0:financialProductsInfoCommand.checkingAccountsAmount?:checkingAccountsAmount}"/>
+		</div>	
 </div>					
 <script type="text/javascript">
-$(document).ready(function(){
-	//$("#age").prop("hidden", true);	
-    $( "#ageSlider" ).slider({
-        value:  ${financialProductsInfoCommand==null?0:financialProductsInfoCommand.age?:age},
-       min: 0,
-       max: 500,
-       step: 50,
-       slide: function( event, ui ) {
-         $( "#age" ).val(ui.value);
-       }
-     });
+$(function(){
 
-  // $("#kids").prop("disabled", true);	    
-   $( "#kidsSlider" ).slider({
-       value:${financialProductsInfoCommand==null?0:financialProductsInfoCommand.kids?:kids},
-       min: 0,
-       max: 500,
-       step: 50,
-       slide: function( event, ui ) {
-         $( "#kids" ).val(ui.value );
-       }
-     });
+  // $("#salary").prop("disabled", true);
+	$( "#salarySlider" ).slider({
+		value:${financialProductsInfoCommand==null?0:financialProductsInfoCommand.salary?:salary},
+        min: 0,
+        max: 200000,
+        step: 100,
+        slide: function( event, ui ) {
+        	$( "#salary" ).val(ui.value );
+        }
+	});	  
 
-  // $("#debt").prop("disabled", true);
-   $( "#debtSlider" ).slider({
-       value:${financialProductsInfoCommand==null?0:financialProductsInfoCommand.debt?:debt},
-       min: 0,
-       max: 500,
-       step: 50,
-       slide: function( event, ui ) {
-         $( "#debt" ).val(ui.value );
-       }
-     });	    	      	    	      
 
-  })
+	$( "#checkingAccountsCountSlider" ).slider({
+		value:${financialProductsInfoCommand==null?0:financialProductsInfoCommand.checkingAccountsCount?:checkingAccountsCount},
+		min: 0,
+		max: 5,
+		step: 1,
+		slide: function( event, ui ) {
+			$( ".checkingAccountsCount" ).val(ui.value );
+		}
+    }); 
+
+	$( "#checkingAccountsAmountSlider" ).slider({
+		value:${financialProductsInfoCommand==null?0:financialProductsInfoCommand.checkingAccountsAmount?:checkingAccountsAmount},
+	    min: 0,
+	    max: 200000,
+	    step: 100,
+	    slide: function( event, ui ) {
+			$( ".checkingAccountsAmount" ).val(ui.value );
+	    }
+	    });        	      	    	      
+	$( '#savingAccountsDialog' ).dialog({
+		autoOpen: false,
+	    show: {
+	    	effect: "blind",
+	        duration: 1000
+	    },
+	    hide: {
+	        effect: "explode",
+	        duration: 1000
+	    }
+	});	
+	
+	$("#btn_savingAccounts").click(function(e){
+	 	e.preventDefault();
+	 	$( "#savingAccountsDialog" ).dialog( "open" );
+	});
+
+	$("#btn_checkingAccounts").click(function(e){
+	  	e.preventDefault();
+		alert('sf');
+	});
+	
+	$("#btn_creditCards").click(function(e){
+	  	e.preventDefault();
+		alert('sf');
+	});
+});	
 </script>				
 
 		

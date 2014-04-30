@@ -32,17 +32,8 @@ class SurveyController {
 	
 	def startSuvey(){
 		def branch = Branch.get(params.branchId)
-		//branch.save()
-		//redirect(action:branch.survey.name,model: [branch:branch])
 		println "*************************startSuvey**************************:"+branch.survey.name 
 		redirect(action:branch.survey.name, params: [branchId: params.branchId])
-		/*
-		def myid =2 
-		if( myid ==2 )
-			redirect(action:'defaultBankSurvey')
-		else
-			redirect(action:'tengdaBankSurvey')
-		*/
 	}
 	
 	def defaultBankSurveyFlow = {
@@ -67,11 +58,14 @@ class SurveyController {
 		
 		financialProductsInfo{
 			on("next"){FinancialProductsInfoCommand cmd ->
+				println "*************************FinancialProductsInfoCommand**************************:"+cmd.checkingAccountsCount
 				flow.financialProductsInfoCommand = cmd
 				if(cmd.hasErrors()){
 					return demographicInfo()
 				}
-				def questions = flow.demographicCommand.createQuestionAndAnswers()
+				def questions = []
+				questions.addAll(flow.demographicCommand.createQuestionAndAnswers())
+				questions.addAll(flow.financialProductsInfoCommand.createQuestionAndAnswers())
 				def command = surveyService.fireMidSummaryRule(questions)
 				flow.midSummaryCommand = command
 			}.to "midSummary"

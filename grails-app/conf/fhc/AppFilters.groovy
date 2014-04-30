@@ -47,11 +47,11 @@ class AppFilters {
 			/**/
             afterView = { Exception e ->
                 //println("AppOtherFilters: after view");
-				println("requestURI: " + request.queryString);
-				println("requestURI: " + request.getMethod());
-				println "actionName  :"+actionName 
-				println "params  :"+params
-				println "flash :" + flash 
+				//println("requestURI: " + request.queryString);
+				//println("requestURI: " + request.getMethod());
+				//println "actionName  :"+actionName 
+				//println "params  :"+params
+				//println "flash :" + flash 
             }
         }
     }

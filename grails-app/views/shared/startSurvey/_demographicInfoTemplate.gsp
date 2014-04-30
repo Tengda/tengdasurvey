@@ -4,6 +4,7 @@
 <g:renderErrors bean="${demographicCommand}" />
            			
 <div class="buttons">
+	First, let's learn a little about you.</br>
 	<g:form action="${branch?.survey?.name?:name}">
 		<div>
 			Sex
@@ -22,17 +23,10 @@
 		</div>
 					
 		<div>
-			Kids: 
+			Children: 
 			<div id="kidsSlider"></div>
 			<g:textField id="kids" name="kids" value="${demographicCommand==null?0:demographicCommand.kids?:kids}"/>				
 		</div>
-					
-		<div>
-			salary: 
-			<div id="salarySlider"></div>
-			<g:textField id="salary" name="salary" value="${demographicCommand==null?0:demographicCommand.salary?:salary}"/>				
-		</div>
-
 	    <g:submitButton name="next" value="Next"></g:submitButton>
 	</g:form>					
 </div>	
@@ -42,9 +36,9 @@
    		//$("#age").prop("hidden", true);		
    	    $( "#ageSlider" ).slider({
    	        value: ${demographicCommand==null?0:demographicCommand.age?:age},
-   	        min: 0,
-   	        max: 500,
-   	        step: 50,
+   	        min: 18,
+   	        max: 100,
+   	        step: 1,
    	        slide: function( event, ui ) {
    	          $( "#age" ).val(ui.value);
    	        }
@@ -54,22 +48,11 @@
    	    $( "#kidsSlider" ).slider({
    	        value:${demographicCommand==null?0:demographicCommand.kids?:kids},
    	        min: 0,
-   	        max: 500,
-   	        step: 50,
+   	        max: 8,
+   	        step: 1,
    	        slide: function( event, ui ) {
    	          $( "#kids" ).val(ui.value );
    	        }
-   	      });
-
-   	    //$("#salary").prop("disabled", true);
-   	    $( "#salarySlider" ).slider({
-   	        value:${demographicCommand==null?0:demographicCommand.salary?:salary},
-   	        min: 0,
-   	        max: 500,
-   	        step: 50,
-   	        slide: function( event, ui ) {
-   	          $( "#salary" ).val(ui.value );
-   	        }
-   	      });	    	      	    	      
+   	      });    	      	    	      
        })
 </script>            
