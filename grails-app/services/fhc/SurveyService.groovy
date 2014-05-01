@@ -60,7 +60,7 @@ class SurveyService {
 			return midSummaryCommand
 		}
 		
-		def FinalSummaryCommand fireFinalSummaryCommand(Question[] questions){
+		def FinalSummaryCommand fireFinalSummaryCommandRule(Question[] questions){
 			println 'fireFinalSummaryCommand-------------start----------------'+questions
 			
 			def kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();

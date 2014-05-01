@@ -42,12 +42,12 @@ then
   age = 25
   // age start from 18, increase 2
 	for (int i =0; i < 10; i++) { 
-		$summary.chartData.add([18+ i*2, Integer.valueOf(salary)+i*100, 20000 + i*200 ,3000 + i*300]);	
+		$summary.chartData.add([18+ i*2, Integer.valueOf(salary)+i*100, 20000 + i*200 ,30000 + i*300]);	
 	}
 	
 	
 	// build table data
-	 $summary.tableData.add(['','YOU','MEDIAN','tOP 10%']);
+	 $summary.tableData.add(['','YOU','MEDIAN','TOP 10%']);
 	 
 	 $summary.tableData.add(['Average income of your age group: ','$'+salary,'$75,201','$300,126']);
 	 $summary.tableData.add(['Average saving of your age group: ','$'+salary,'$30,720','$150,816']);

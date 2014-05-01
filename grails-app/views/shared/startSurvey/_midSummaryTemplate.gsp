@@ -1,3 +1,6 @@
+
+Review the below to see where you rank locally, nationally </br>
+and against the top 10% in your demographic. </br>
 <div id="chart_div" style="width: 900px; height: 500px;"></div>
 <div id='table_div'></div>	 
 <g:link event="next" class="buttons"><g:message code="default.fhc.button.next"/></g:link>					

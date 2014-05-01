@@ -21,7 +21,6 @@
 			<div id="ageSlider"></div>
 			<g:textField id="age" name="age" value="${demographicCommand==null?0:demographicCommand.age?:age}"/>	
 		</div>
-					
 		<div>
 			Children: 
 			<div id="kidsSlider"></div>

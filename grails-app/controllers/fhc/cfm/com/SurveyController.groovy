@@ -113,7 +113,7 @@ class SurveyController {
 						case "financialProductsInfo":
 							println "goalSelectionAction---last page-----financialProductsInfo-------------------"
 							def questions = flow.demographicCommand.createQuestionAndAnswers()
-							def command = surveyService.fireFinalSummaryCommand(questions)
+							def command = surveyService.fireFinalSummaryCommandRule(questions)
 							flow.finalSummaryCommand = command
 							return financialProductsInfo()
 						case "goal_reduce_credit":
@@ -175,14 +175,14 @@ class SurveyController {
 				if(cmd.hasErrors()){
 					return finalSummary()
 				}
-				/*
+				/**/
 				sendMail {   
 				  from "service@softwarehousecall.com"  
-				  to "twang@cfms4.com"     
-				  subject "Hello Fred"     
-				  body 'How are you?' 
+				  to "twang@cfms4.com"  
+				  subject "Hello Fred"+cmd.email  
+				  body 'How are you?</br>' +cmd.telepressence+":asdasdsadsa"+flow.demographicCommand.age
 				}
-				*/
+				
 			}.to "endSurvey"
 		}
 		
