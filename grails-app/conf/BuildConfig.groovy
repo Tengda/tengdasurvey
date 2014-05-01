@@ -47,6 +47,7 @@ grails.project.dependency.resolution = {
 		//mavenRepo "http://repository.jboss.org/nexus/content/groups/public/"
 		//mavenRepo "http://people.apache.org/repo/m2-snapshot-repository/"
 		mavenRepo 'http://repo.spring.io/milestone'
+		mavenRepo "http://download.java.net/maven/2/"
     }
 
     dependencies {
@@ -109,5 +110,9 @@ grails.project.dependency.resolution = {
 		compile ":grails-melody:1.50.0"
 		
 		compile ':spring-security-core:2.0-RC2'
+		
+		compile ":famfamfam:1.0.1"
+		
+		compile ":spring-security-ui:1.0-RC1"
     }
 }
