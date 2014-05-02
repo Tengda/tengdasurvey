@@ -12,10 +12,10 @@
 		            <td>Name</td>
 		            <td>hits</td>
 		        </tr>
-		        <g:each in="${branchStatisticsCommand?.counterRequests}" var="counterRequest">
+		        <g:each in="${branchStatisticsCommand?.pageStatisticses}" var="pageStatistics">
 		        <tr>
-		            <td>${counterRequest.name}</td>
-		            <td>${counterRequest.hits}</td>
+		            <td>${pageStatistics.pageId}</td>
+		            <td>${pageStatistics.odometer}</td>
 		        </tr>
 		        </g:each>        
 		    </table>			

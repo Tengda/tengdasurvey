@@ -126,6 +126,11 @@ class SurveyService {
 		
 		def BranchStatisticsCommand getBranchCounterRequest(UserBranch userBranch){
 			def branchStatisticsCommand = new BranchStatisticsCommand()
+			def pageStatisticses = PageStatistic.where{
+				survey == userBranch.branch.survey
+			}.findAll()
+			branchStatisticsCommand.pageStatisticses = pageStatisticses
+			/*
 			
 			def context = new FilterContext()
 			context.initCounters()
@@ -143,17 +148,10 @@ class SurveyService {
 			for (counterRequest in counterRequests){
 				if(counterRequest.getName().contains(surveyName)){
 					branchStatisticsCommand.counterRequests.add(counterRequest)
-					/*
-					for(entry in counterRequest.getChildRequestsExecutionsByRequestId().entrySet()){
-						def requestId = entry.getKey();
-						println 'child request id: ------: '+requestId
-					}
-					*/
-					//println 'child request : ------------------------: '+counterRequest.getChildRequestsExecutionsByRequestId()
-					//println 'child request : ------------------------: '+counterRequest.childHits
 				}
 			}
 			println "http counterRequest------getBranchCounterRequest---------------------:"+branchStatisticsCommand.counterRequests.size()
+			*/
 			return branchStatisticsCommand
 		}
 		
