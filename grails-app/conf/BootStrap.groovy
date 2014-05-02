@@ -20,7 +20,7 @@ class BootStrap {
 							question_debt]			
 			*/
 			def branch = new Branch(branchId: 1, name: "Tengda's Branch", logo: "/logos/cfmlogo.jpg", url: "http://www.cfms4.com")
-			def survey = new Survey(surveyId: 1, name: "defaultBankSurvey")
+			def survey = new Survey(name: "defaultBankSurvey")
 			
 			//survey.questions = questions
 			survey.save()
@@ -28,14 +28,14 @@ class BootStrap {
 			branch.save()
 			
 			def role = new Role(authority: 'ROLE_ADMIN', description: 'Admin role').save()
-			def admin = new User(username: 'admin', userRealName: 'admin', password: 'admin',enabled: true, email: 'admin@servername').save()
+			def admin = new User(username: 'admin', phoneNumber:'none',password: 'admin',enabled: true).save()
 			def userRole = new UserRole()
 			userRole.user = admin
 			userRole.role = role
 			userRole.save()
 			
-			def branchRole = new Role(authority: 'ROLE_BRANCH', description: 'Branch role').save()
-			def branchUser = new User(username: 'branch', userRealName: 'branch', password: 'branch',enabled: true, email: 'admin@servername').save()
+			def branchRole = new Role(authority: 'ROLE_BRANCH',description: 'Branch role').save()
+			def branchUser = new User(username: 'branch', phoneNumber:'none', password: 'branch',enabled: true).save()
 			def branchUserRole = new UserRole()
 			branchUserRole.user = branchUser
 			branchUserRole.role = branchRole
@@ -47,7 +47,7 @@ class BootStrap {
 			userBranch.save()
 			
 			branch = new Branch(branchId: 2, name: "Tengda's Branch 1", logo: "springsource.png",url: "http://www.dbsi-inc.com")
-			survey = new Survey(surveyId: 2, name: "tengdaBankSurvey")
+			survey = new Survey(name: "tengdaBankSurvey")
 			
 			//survey.questions = questions
 			survey.save()

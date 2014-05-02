@@ -1,10 +1,12 @@
 package fhc.cfm.com
 
-class PageStatistic {
+import java.io.Serializable;
+
+class PageStatistic implements Serializable {
 	String pageId;
+	Survey survey;
 	long odometer = 0;
 	
     static constraints = {
-		pageId(nullable: false, blank: false, unique: true)
     }
 }

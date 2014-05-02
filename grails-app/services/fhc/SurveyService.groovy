@@ -2,6 +2,9 @@ package fhc
 
 import grails.transaction.Transactional
 
+import grails.plugin.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.authentication.dao.NullSaltSource
+import grails.plugin.springsecurity.ui.RegistrationCode
 
 import org.kie.internal.KnowledgeBase;
 import org.kie.internal.KnowledgeBaseFactory;
@@ -152,5 +155,60 @@ class SurveyService {
 			}
 			println "http counterRequest------getBranchCounterRequest---------------------:"+branchStatisticsCommand.counterRequests.size()
 			return branchStatisticsCommand
+		}
+		
+		def saveUserSurvey(List<Question> questions,FinalSummaryCommand cmd){
+			//save survey
+			def survey = new Survey(name: "customer saved")
+			survey.questions = questions
+			survey.save()
+			// first check if user exists as email
+			def user = User.where{
+				username == cmd.email
+			}.find()
+			
+			def userSurvey
+			if(user){
+				userSurvey= UserSurvey.where {
+					user == user
+				}.find()
+				if(userSurvey){
+					userSurvey.survey.deleteAll()
+				}else{
+					userSurvey = new UserSurvey()
+				}
+			}else{
+				//create user
+				def role =   Role.where{
+					authority == "ROLE_ADMIN"
+				}.find()
+				user = new User(username: cmd.email, password: cmd.telepressence,phoneNumber:cmd.telepressence,enabled: true).save()
+				println "------start---------------------saveUserSurvey save? user?"+user.username
+				def userRole = new UserRole()
+				userRole.user = user
+				userRole.role = role
+				userRole.save()
+				
+				userSurvey = new UserSurvey()
+			}
+			userSurvey.user = user
+			userSurvey.survey = survey
+			userSurvey.save()
+		}
+		
+		def pageStatisticUpdate(String pageId, Survey survey){
+			def pageStatistic = PageStatistic.where{
+				pageId == pageId &&
+				survey == survey
+			}.find()
+			if(pageStatistic){
+				pageStatistic.odometer = pageStatistic.odometer+1
+			}else{
+				pageStatistic = new PageStatistic()
+				pageStatistic.pageId = pageId
+				pageStatistic.survey = survey
+				pageStatistic.odometer = 1
+			}
+			pageStatistic.save()
 		}
 }

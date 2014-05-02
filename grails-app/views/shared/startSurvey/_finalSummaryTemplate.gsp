@@ -8,7 +8,18 @@
 		<div>
 			Instant Telepressence?
 			<g:textField name="telepressence" value="${finalSummaryCommand?.telepressence?:telepressence}"/>				
-		</div>			
+		</div>	
+<!-- 	
+      <span id='loginLink' style='position: relative; margin-right: 30px; float: right'>
+      <sec:ifLoggedIn>
+         Logged in as <sec:username/> (<g:link controller='logout'>Logout</g:link>)
+      </sec:ifLoggedIn>
+      <sec:ifNotLoggedIn>
+         <a href='#' onclick='showLogin(); return false;'>Login</a>
+      </sec:ifNotLoggedIn>
+      </span>	
+		<g:render template='/includes/ajaxLogin'/>
+ -->	
 		<g:submitButton name="next" value="Next"></g:submitButton>
 	</g:form>
 </div>

@@ -1,13 +1,16 @@
 package com.cfm.auth
 
-class User {
+import java.io.Serializable;
+
+class User implements Serializable {
 
 	transient springSecurityService
 
 	String username
 	String password
-	String userRealName
-	String email
+	//String userRealName
+	//String email
+	String phoneNumber
 	
 	
 	boolean enabled = true
@@ -20,6 +23,7 @@ class User {
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
+		phoneNumber blank: true
 	}
 
 	static mapping = {

@@ -1,6 +1,8 @@
 package com.cfm.auth
 
-class Role {
+import java.io.Serializable;
+
+class Role implements Serializable {
 
 	String authority
 	String description

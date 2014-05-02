@@ -135,6 +135,7 @@ log4j = {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.cfm.auth.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.cfm.auth.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.cfm.auth.Role'
+grails.plugin.springsecurity.ui.register.emailFrom = 'service@softwarehousecall.com'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
 	'/index':                         ['permitAll'],

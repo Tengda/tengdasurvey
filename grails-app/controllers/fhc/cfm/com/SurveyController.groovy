@@ -42,6 +42,7 @@ class SurveyController {
 			action{
 				def branch = Branch.get(params.branchId)
 				flow.branch = branch
+				surveyService.pageStatisticUpdate("demographicInfo",flow.branch.survey)
 				return next()
 			}
 			on("next").to "demographicInfo"
@@ -53,6 +54,7 @@ class SurveyController {
 				if(cmd.hasErrors()){
 					return demographicInfo()
 				}
+				surveyService.pageStatisticUpdate("financialProductsInfo",flow.branch.survey)
 			}.to "financialProductsInfo"
 		}
 		
@@ -68,6 +70,7 @@ class SurveyController {
 				questions.addAll(flow.financialProductsInfoCommand.createQuestionAndAnswers())
 				def command = surveyService.fireMidSummaryRule(questions)
 				flow.midSummaryCommand = command
+				surveyService.pageStatisticUpdate("midSummary",flow.branch.survey)
 			}.to "midSummary"
 		}
 		
@@ -77,6 +80,7 @@ class SurveyController {
 				if(!flow.goalSelectionCommand){
 					flow.goalSelectionCommand = surveyService.initGoalSelectionCommand()
 				}
+				surveyService.pageStatisticUpdate("goalSelection",flow.branch.survey)
 				println "*************************midSummary**************************:"+flow.goalSelectionCommand
 			}.to "goalSelection"
 		}
@@ -144,11 +148,19 @@ class SurveyController {
 					
 				}
 			}
-			on("financialProductsInfo").to "finalSummary"	
+			on("financialProductsInfo"){
+				surveyService.pageStatisticUpdate("finalSummary",flow.branch.survey)
+			}.to "finalSummary"	
 			
-			on("goal_reduce_credit").to "goal_reduce_credit"
-			on("goal_save_collage").to "goal_save_collage"
-			on("goal_buy_house").to "goal_buy_house"
+			on("goal_reduce_credit"){
+				surveyService.pageStatisticUpdate("goal_reduce_credit",flow.branch.survey)
+			}.to "goal_reduce_credit"
+			on("goal_save_collage"){
+				surveyService.pageStatisticUpdate("goal_save_collage",flow.branch.survey)
+			}.to "goal_save_collage"
+			on("goal_buy_house"){
+				surveyService.pageStatisticUpdate("goal_buy_house",flow.branch.survey)
+			}.to "goal_buy_house"
 		}
 		
 		goal_reduce_credit{
@@ -175,14 +187,19 @@ class SurveyController {
 				if(cmd.hasErrors()){
 					return finalSummary()
 				}
-				/**/
+				/*
 				sendMail {   
 				  from "service@softwarehousecall.com"  
 				  to "twang@cfms4.com"  
 				  subject "Hello Fred"+cmd.email  
 				  body 'How are you?</br>' +cmd.telepressence+":asdasdsadsa"+flow.demographicCommand.age
 				}
-				
+				*/
+				def questions = []
+				questions.addAll(flow.demographicCommand.createQuestionAndAnswers())
+				questions.addAll(flow.financialProductsInfoCommand.createQuestionAndAnswers())
+				surveyService.saveUserSurvey(questions, cmd)
+				surveyService.pageStatisticUpdate("endSurvey",flow.branch.survey)
 			}.to "endSurvey"
 		}
 		
